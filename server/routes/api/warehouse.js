@@ -24,7 +24,11 @@ router.get("/products", async (req, res) => {
         return;
       }
 
-      res.send({ success: true, results });
+      if (results) {
+        res.send({ success: true, results });
+      } else {
+        res.send({ success: true, results: [] });
+      }
     });
   } catch (error) {
     res.send({ success: false });

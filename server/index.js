@@ -1,7 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
+const path = require("path");
+const dotenv = require("dotenv");
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 const app = express();
 
 //Middleware
@@ -12,6 +14,7 @@ const warehouse = require("./routes/api/warehouse");
 app.use("/api/warehouse", warehouse);
 
 if (process.env.NODE_ENV === "production") {
+  console.log("Production routing");
   app.use(express.static(__dirname + "/public/"));
   app.get(/.*/, (req, res) => res.sendFile(__dirname + "/public/index.html"));
 }

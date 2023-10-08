@@ -20,7 +20,9 @@ router.get("/products", async (req, res) => {
   try {
     const sql = "SELECT * from products";
     connection.query(sql, function (error, results) {
+      console.log(connection.state);
       if (error) {
+        console.log(error);
         res.send({ success: false });
 
         return;
@@ -33,6 +35,7 @@ router.get("/products", async (req, res) => {
       }
     });
   } catch (error) {
+    console.log(error);
     res.send({ success: false });
   }
 });

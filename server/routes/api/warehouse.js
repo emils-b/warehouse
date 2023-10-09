@@ -100,7 +100,7 @@ router.post("/updateProduct", async (req, res) => {
 router.delete("/product", async (req, res) => {
   try {
     const sku = req.query.sku;
-    const sql = "DELETE FROM Products WHERE sku = ?;";
+    const sql = "DELETE FROM products WHERE sku = ?;";
     connection.query(sql, [sku], function (error, results) {
       if (error) {
         res.send({ success: false });

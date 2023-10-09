@@ -20,7 +20,9 @@ router.get("/products", async (req, res) => {
   try {
     const sql = "SELECT * from products";
     connection.query(sql, function (error, results) {
-      console.log(connection.state);
+      console.log("DB connection state: " + connection.state);
+      console.log("Returning all products");
+
       if (error) {
         console.log(error);
         res.send({ success: false });
@@ -118,6 +120,8 @@ router.get("/product", async (req, res) => {
   try {
     const sql = "SELECT * from products where sku = ?";
     const sku = req.query.sku;
+
+    console.log("Returning product with SKU: " + sku);
 
     connection.query(sql, [sku], function (error, results) {
       if (error) {
